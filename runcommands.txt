@@ -1,0 +1,2 @@
+npm run gulp transpileTS
+protractor .\\config.js
