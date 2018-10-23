@@ -1,4 +1,5 @@
 var SpecReporter = require("jasmine-spec-reporter").SpecReporter;
+var browserParam = process.argv[3].substring(10, process.argv[3].length);
 
 exports.config = {
   directConnect: false,
@@ -7,28 +8,27 @@ exports.config = {
   maxInstances: 2,
   maxSessions: 5,
   specs: ["./e2e/spec/strava.js"],
+  suites: {
+    strava: ["./e2e/spec/1_strava.js"],
+
+    // vipps
+    s1: "./e2e/spec/1_strava.js",
+    s2: "./e2e/spec/2_strava.js"
+  },
 
   // Standard settings common for all browsers
-  commonCapabilities: {
-    project: "strava",
-    resolution: "1920x1080"
+  capabilities: {
+    project: "StravaFrontEndTest",
+    resolution: "1920x1080",
+    // os: "osx",
+    // os_version: "10",
+    browserName: browserParam
   },
-  // Specific settings for specific browser
-  multiCapabilities: [
-    {
-      // os: "windows",
-      // os_version: "10",
-      browserName: "chrome"
-      // 'chromeOptions': {'args': ['lang=no-NO']}
-    } /*,{
-            'os': 'windows',
-            'os_version': '10',
-            "browserName": "firefox"
-        }*/
-  ],
 
+  // Framework to use. Jasmine is recommended.
   framework: "jasmine",
 
+  // For angular tests
   useAllAngular2AppRoots: true,
 
   getPageTimeout: 180000,
@@ -36,10 +36,15 @@ exports.config = {
   jasmineNodeOpts: {
     defaultTimeoutInterval: 180000,
     showColors: true,
-    print: function() {}
+    print: function() {} //Remove protractor dot reporter
   },
 
   onPrepare: function() {
+    // Override the default timeout for webdriver.
+    // var width = 1920;
+    // var height = 1080;
+    // browser.driver.manage().window().setSize(width, height);
+
     browser
       .manage()
       .timeouts()
@@ -62,7 +67,3 @@ exports.config = {
 
   afterLaunch: function() {}
 };
-exports.config.multiCapabilities.forEach(function(caps) {
-  for (var i in exports.config.commonCapabilities)
-    caps[i] = caps[i] || exports.config.commonCapabilities[i];
-});

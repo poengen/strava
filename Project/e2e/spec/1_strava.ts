@@ -16,7 +16,7 @@ describe("Should run all the tests", () => {
     const res: Response = await fetch("https://www.strava.com/api/v3/athlete", {
       method: "GET",
       headers: {
-        Authorization: "Bearer 3eb729ee4402955e0196345a7963c158191725ff"
+        Authorization: "Bearer 8d7506269c28c090bca6595da8be1416ebca5851"
       }
     });
     console.log(await res.json());
