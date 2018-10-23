@@ -2,6 +2,7 @@ import {} from "jasmine";
 import { browser, element } from "protractor";
 import { Passwords } from "../data/passwords";
 import { StravaPage } from "../pageobject/strava.po";
+import * as fetch from "isomorphic-fetch";
 
 describe("Should run all the tests", () => {
   var data: Passwords = new Passwords();
@@ -9,6 +10,17 @@ describe("Should run all the tests", () => {
 
   beforeAll(async () => {
     console.log("Run strava.ts");
+  });
+
+  it("Get Athlete", async done => {
+    const res: Response = await fetch("https://www.strava.com/api/v3/athlete", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer 3eb729ee4402955e0196345a7963c158191725ff"
+      }
+    });
+    console.log(await res.json());
+    done();
   });
 
   it("Navigate to strava.com", async done => {
