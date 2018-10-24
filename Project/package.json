@@ -4,9 +4,7 @@
   "description": "acceptancetests",
   "scripts": {
     "gulp": "gulp",
-    "runChrome": "protractor config.js --browser=chrome --suite=strava",
-    "runs1": "protractor config.js --browser=chrome --suite=s1",
-    "runs2": "protractor config.js --browser=chrome --suite=s2",
+    "strava": "protractor config.js --browser=chrome",
     "webdriver-update": "webdriver-manager update"
   },
   "husky": {

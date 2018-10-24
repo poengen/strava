@@ -8,20 +8,11 @@ exports.config = {
   maxInstances: 2,
   maxSessions: 5,
   specs: ["./e2e/spec/strava.js"],
-  suites: {
-    strava: ["./e2e/spec/1_strava.js"],
-
-    // vipps
-    s1: "./e2e/spec/1_strava.js",
-    s2: "./e2e/spec/2_strava.js"
-  },
 
   // Standard settings common for all browsers
   capabilities: {
     project: "StravaFrontEndTest",
     resolution: "1920x1080",
-    // os: "osx",
-    // os_version: "10",
     browserName: browserParam
   },
 

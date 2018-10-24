@@ -1,7 +1,7 @@
 export class CreateRequestModel {
   public method: string;
   public body: BodyRequestModel;
-  public headers: HeadersRequestModel;
+  public headers: Record<string, string>;
 }
 
 export class BodyRequestModel {
@@ -9,10 +9,4 @@ export class BodyRequestModel {
   public type: string;
   public start_date_local: string;
   public elapsed_time: number;
-}
-
-export class HeadersRequestModel {
-  public accept: string;
-  public authorization: string;
-  public contentType: string;
 }
