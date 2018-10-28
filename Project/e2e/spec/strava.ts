@@ -6,7 +6,10 @@ import { EndPoints } from "../data/endpoints";
 import { StravaPage } from "../pageobject/strava.po";
 import { CreateActivityRequestData } from "../data/CreateActivity";
 import { CreateRequestModel } from "../models/RequestModels";
-import { CreateResponseModel, GetAthleteResponseModel } from "../models/ResponseModels";
+import {
+  CreateResponseModel,
+  GetAthleteResponseModel
+} from "../models/ResponseModels";
 
 describe("Should run all the tests", () => {
   var pwd: Passwords = new Passwords();
@@ -16,6 +19,8 @@ describe("Should run all the tests", () => {
   var model: CreateRequestModel = new CreateRequestModel();
   var resp: CreateResponseModel = new CreateResponseModel();
   var athlete: GetAthleteResponseModel = new GetAthleteResponseModel();
+
+  console.log("blablabla");
 
   beforeAll(async () => {
     console.log("Run 1_strava.ts");
@@ -31,7 +36,6 @@ describe("Should run all the tests", () => {
     resp = await resPost.json();
     done();
   });
-
 
   it("Console log activity number", async done => {
     console.log("Activity number = " + resp.id);
@@ -66,7 +70,9 @@ describe("Should run all the tests", () => {
 
   it("Should check name of athlete", async done => {
     var athleteName: string = await page.athleteName().getText();
-    console.log(athleteName + " == " + athlete.firstname + " " + athlete.lastname);
+    console.log(
+      athleteName + " == " + athlete.firstname + " " + athlete.lastname
+    );
     expect(athleteName).toBe(athlete.firstname + " " + athlete.lastname);
     await browser.sleep(2000);
     done();
@@ -98,14 +104,19 @@ describe("Should run all the tests", () => {
   });
 
   it("Confirm delete", async done => {
-    browser.switchTo().alert().accept();
+    browser
+      .switchTo()
+      .alert()
+      .accept();
     await browser.sleep(2000);
     done();
   });
 
   it("Check deletion", async done => {
     await browser.driver.get("https://www.strava.com/activities/" + resp.id);
-    expect(await page.alertMessage().getText()).toBe("The requested activity could not be found");
+    expect(await page.alertMessage().getText()).toBe(
+      "The requested activity could not be found"
+    );
     await browser.sleep(5000);
     done();
   });
