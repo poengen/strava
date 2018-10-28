@@ -43,13 +43,20 @@ describe("Should run all the tests", () => {
   });
 
   it("Get Athlete", async done => {
-    const resAth: Response = await fetch(url.GETAthlete, {
+    // var resAth: Response;
+    await fetch(url.GETAthlete, {
       method: "GET",
       headers: {
         Authorization: pwd.auth1
       }
-    });
-    athlete = await resAth.json();
+    })
+      .then(async resAth => {
+        athlete = await resAth.json();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    // athlete = await resAth.json();
     done();
   });
 
