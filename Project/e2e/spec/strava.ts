@@ -20,20 +20,26 @@ describe("Should run all the tests", () => {
   var resp: CreateResponseModel = new CreateResponseModel();
   var athlete: GetAthleteResponseModel = new GetAthleteResponseModel();
 
-  console.log("blablabla");
-
   beforeAll(async () => {
     console.log("Run 1_strava.ts");
   });
 
   it("POST Activity", async done => {
     model = data;
-    const resPost: Response = await fetch(url.POSTCreateActivity, {
+    const res: Response = await fetch(url.POSTCreateActivity, {
       method: model.method,
       body: JSON.stringify(model.body),
       headers: model.headers
     });
-    resp = await resPost.json();
+    if (res.status > 300) {
+      console.log("Error in POST Create Activity response.");
+      console.log("Status: " + res.status);
+      console.log("Status text: " + res.statusText);
+      process.exit(1);
+    }
+    console.log("Status: " + res.status);
+    console.log("Status text: " + res.statusText);
+    resp = await res.json();
     done();
   });
 
@@ -43,20 +49,21 @@ describe("Should run all the tests", () => {
   });
 
   it("Get Athlete", async done => {
-    // var resAth: Response;
-    await fetch(url.GETAthlete, {
+    const resAth: Response = await fetch(url.GETAthlete, {
       method: "GET",
       headers: {
         Authorization: pwd.auth1
       }
-    })
-      .then(async resAth => {
-        athlete = await resAth.json();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    // athlete = await resAth.json();
+    });
+    if (resAth.status > 300) {
+      console.log("Error in GET Athlete response.");
+      console.log("Status: " + resAth.status);
+      console.log("Status text: " + resAth.statusText);
+      process.exit(1);
+    }
+    console.log("Status: " + resAth.status);
+    console.log("Status text: " + resAth.statusText);
+    athlete = await resAth.json();
     done();
   });
 

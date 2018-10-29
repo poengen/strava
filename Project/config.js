@@ -25,6 +25,7 @@ exports.config = {
   getPageTimeout: 180000,
   allScriptsTimeout: 180000,
   jasmineNodeOpts: {
+    realtimeFailure: true,
     defaultTimeoutInterval: 180000,
     showColors: true,
     print: function() {} //Remove protractor dot reporter

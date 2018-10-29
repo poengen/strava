@@ -9,4 +9,9 @@ export class BodyRequestModel {
   public type: string;
   public start_date_local: string;
   public elapsed_time: number;
+  public updates: UpdatesRequestModel;
+}
+
+export class UpdatesRequestModel {
+  public private: boolean;
 }
