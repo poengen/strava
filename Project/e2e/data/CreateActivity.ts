@@ -1,13 +1,13 @@
 export class CreateActivityRequestData {
   method = "POST";
   body = {
-    name: "Netlight demo test activity",
+    name: "NETLIGHT DEMO ACTIVITY",
     type: "Run",
     start_date_local: "2018-10-24T18:25:43-05:00",
     elapsed_time: 56,
     updates: {
       private: true
-  }
+    }
   };
   headers = {
     "Content-Type": "application/json",

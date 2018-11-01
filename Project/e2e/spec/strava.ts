@@ -70,7 +70,7 @@ describe("Should run all the tests", () => {
   it("Navigate to strava.com", async done => {
     await browser.waitForAngularEnabled(false);
     await browser.driver.get("https://www.strava.com/login");
-    await browser.sleep(2000);
+    await browser.sleep(1000);
     done();
   });
 
@@ -78,7 +78,7 @@ describe("Should run all the tests", () => {
     await page.usernameField().sendKeys(pwd.username);
     await page.passwordField().sendKeys(pwd.password);
     await page.loginButton().click();
-    await browser.sleep(2000);
+    await browser.sleep(1000);
     done();
   });
 
@@ -88,32 +88,32 @@ describe("Should run all the tests", () => {
       athleteName + " == " + athlete.firstname + " " + athlete.lastname
     );
     expect(athleteName).toBe(athlete.firstname + " " + athlete.lastname);
-    await browser.sleep(2000);
+    await browser.sleep(1000);
     done();
   });
 
   it("Go to activities", async done => {
     await browser.driver.get("https://www.strava.com/activities/" + resp.id);
-    await browser.sleep(2000);
+    await browser.sleep(1000);
     done();
   });
 
   it("Check activity name", async done => {
     expect(await page.activityName().getText()).toBe(model.body.name);
-    await browser.sleep(2000);
+    await browser.sleep(500);
     done();
   });
 
   it("Click utilities", async done => {
     await page.utilitySprite().click();
-    await browser.sleep(2000);
+    await browser.sleep(500);
     done();
   });
 
   it("Click delete", async done => {
     console.log(await page.deleteButton().getText());
     await page.deleteButton().click();
-    await browser.sleep(2000);
+    await browser.sleep(500);
     done();
   });
 
@@ -122,7 +122,7 @@ describe("Should run all the tests", () => {
       .switchTo()
       .alert()
       .accept();
-    await browser.sleep(2000);
+    await browser.sleep(500);
     done();
   });
 
@@ -131,7 +131,7 @@ describe("Should run all the tests", () => {
     expect(await page.alertMessage().getText()).toBe(
       "The requested activity could not be found"
     );
-    await browser.sleep(5000);
+    await browser.sleep(3000);
     done();
   });
 
