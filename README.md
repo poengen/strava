@@ -2,7 +2,7 @@
 
 #### Clone to your local source folder
 
-###### >> git@github.com:poengen/strava.git
+###### >> https://github.com/poengen/strava.git
 
 #### Install npm libraries
 
